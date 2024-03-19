@@ -16,7 +16,7 @@ public class PlayerMover : MonoBehaviour
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
 
-    private void Start()
+    private void Awake()
     {
         _startPosition = transform.position;
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -34,7 +34,8 @@ public class PlayerMover : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
     }
-    private void Reset()
+
+    private void OnEnable()
     {
         transform.position = _startPosition;
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;

@@ -12,13 +12,13 @@ public class Ground : MonoBehaviour, IInterectable
         _animator = GetComponent<Animator>();
     }
 
-    private void OnDisable()
-    {
-        _animator.enabled = false;
-    }
-
     private void Reset()
     {
         _animator.enabled = true;
+    }
+
+    public void StopAnimation()
+    {
+        _animator.enabled = false;
     }
 }
