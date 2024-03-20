@@ -11,19 +11,9 @@ namespace Assets.Scripts.Services.Shooting
         private Vector2 _direction;
         private int _parentInstanceId;
 
-        public event Action<Bullet> OnTriggerEnter;
+        public int ParentInstanceId => _parentInstanceId;
 
-        public void Init(Vector2 direction, Quaternion rotation, int parentInstanceId)
-        {
-            _direction = direction;
-            _parentInstanceId = parentInstanceId;
-            transform.rotation = rotation;
-        }
-        
-        public int GetParentInstanceId()
-        {
-            return _parentInstanceId;
-        }
+        public event Action<Bullet> OnTriggerEnter;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -39,6 +29,13 @@ namespace Assets.Scripts.Services.Shooting
             {
                 transform.Translate(_direction * _speed * Time.deltaTime);
             }
+        }
+
+        public void Init(Vector2 direction, Quaternion rotation, int parentInstanceId)
+        {
+            _direction = direction;
+            _parentInstanceId = parentInstanceId;
+            transform.rotation = rotation;
         }
     }
 }

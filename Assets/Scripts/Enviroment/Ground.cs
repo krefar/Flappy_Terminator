@@ -7,14 +7,14 @@ public class Ground : MonoBehaviour, IInterectable
 {
     private Animator _animator;
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
     private void Reset()
     {
         _animator.enabled = true;
+    }
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
     }
 
     public void StopAnimation()

@@ -24,17 +24,6 @@ public class PlayerMover : MonoBehaviour
         _minRotation = Quaternion.Euler(0,0,_minRotationZ);
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            _rigidbody2D.velocity = new Vector2(_speed, _tapForce);
-            transform.rotation = _maxRotation;
-        }
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
-    }
-
     private void OnEnable()
     {
         transform.position = _startPosition;
@@ -44,5 +33,16 @@ public class PlayerMover : MonoBehaviour
     private void OnDisable()
     {
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            _rigidbody2D.velocity = new Vector2(_speed, _tapForce);
+            transform.rotation = _maxRotation;
+        }
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
     }
 }

@@ -12,7 +12,7 @@ namespace Assets.Scripts.Services.Shooting
         {
             var isBullet = other.TryGetComponent(out Bullet bullet);
 
-            if (isBullet && bullet.GetParentInstanceId() != gameObject.GetInstanceID())
+            if (isBullet && bullet.ParentInstanceId != gameObject.GetInstanceID())
             {
                 OnHitByBullet?.Invoke();
             }

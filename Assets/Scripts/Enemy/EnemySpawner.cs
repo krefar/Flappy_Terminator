@@ -34,6 +34,11 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
+    private void OnDisable()
+    {
+        _pool.Clear();
+    }
+
     private void ActionOnGet(Enemy enemy)
     {
         enemy.transform.localPosition = GetSpawnPoint();
@@ -80,10 +85,5 @@ public class EnemySpawner : MonoBehaviour
     private Enemy SpawnEnemy()
     {
         return _pool.Get();
-    }
-
-    private void OnDisable()
-    {
-        _pool.Clear();
     }
 }

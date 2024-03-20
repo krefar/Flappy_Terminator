@@ -8,14 +8,12 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyShooter))]
 public class Enemy : MonoBehaviour
 {
-    public event Action<Enemy> OnEnemyDie;
-
     private BulletTarget _bulletTarget;
     private Rigidbody2D _rigidbody;
     private EnemyMover _enemyMover;
     private EnemyShooter _enemyShooter;
 
-    private Vector3 _moveTo;
+    public event Action<Enemy> OnEnemyDie;
 
     private void Awake()
     {

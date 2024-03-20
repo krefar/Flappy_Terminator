@@ -9,9 +9,9 @@ namespace Assets.Scripts.Services.Shooting
     [RequireComponent(typeof(Animator))]
     public abstract class ShooterBase : MonoBehaviour
     {
-        [SerializeField] private Bullet _bulletPrefab;
-
         private const string ShootTriggerName = "Shoot";
+
+        [SerializeField] private Bullet _bulletPrefab;
 
         private ObjectPool<Bullet> _bulletPool;
         private Animator _animator;
@@ -42,12 +42,12 @@ namespace Assets.Scripts.Services.Shooting
         }
 
         protected abstract Vector2 GetShootDirection();
-        
 
         private void ActionOnGet(Bullet bullet)
         {
             bullet.gameObject.SetActive(true);
             bullet.transform.position = transform.position;
+            bullet.OnTriggerEnter += Release;
         }
 
         private Bullet CreateBullet()
@@ -57,6 +57,7 @@ namespace Assets.Scripts.Services.Shooting
 
         private void Release(Bullet bullet)
         {
+            bullet.OnTriggerEnter -= Release;
             _bulletPool.Release(bullet);
         }
     }
